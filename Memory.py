@@ -13,7 +13,6 @@ from random import *
 from turtle import *
 
 from freegames import path
-
 L = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Ñ", "Á", "É", "Í", "Ó", "Ú"]
 car = path('car.gif')
 tiles = L * 2
@@ -42,8 +41,11 @@ def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
+contador=0
 
 def tap(x, y):
+    
+    
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
@@ -54,6 +56,9 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+    global contador
+    contador=contador+1
+    print(contador)
 
 
 def draw():
