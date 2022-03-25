@@ -18,6 +18,8 @@ car = path('car.gif')
 tiles = L * 2
 state = {'mark': None}
 hide = [True] * 64
+global pares
+pares = 0
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -46,16 +48,25 @@ contador=0
 def tap(x, y):
     
     
+    global pares
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
     mark = state['mark']
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
+        
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+        pares = pares + 1
+        print (f'Encontraste {pares} pares')
+        
+        #verifica que esten todos los pares descubiertos"
+        if pares == 32:
+            print('Felicidades has encontrado todos los pares')
+        
     global contador
     contador=contador+1
     print(contador)
@@ -72,6 +83,7 @@ def draw():
         if hide[count]:
             x, y = xy(count)
             square(x, y)
+            
 
     mark = state['mark']
 
@@ -81,6 +93,7 @@ def draw():
         goto(x + 19.5, y+ 9)
         color('black')
         write(tiles[mark], font=('Arial', 15, 'normal'))
+        
 
     update()
     ontimer(draw, 100)
