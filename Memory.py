@@ -50,12 +50,11 @@ def tap(x, y):
 
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
-    elif tiles[mark] == tiles[spot]:
-        print("Congratulations")
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+
 
 def draw():
     """Draw image and tiles."""
@@ -76,11 +75,11 @@ def draw():
         up()
         goto(x + 2, y)
         color('black')
-        write(tiles[mark], font=('Arial', 15, 'normal'))
-    
+        write(tiles[mark], font=('Arial', 30, 'normal'))
+
     update()
     ontimer(draw, 100)
-    
+
 shuffle(tiles)
 setup(420, 420, 370, 0)
 addshape(car)
